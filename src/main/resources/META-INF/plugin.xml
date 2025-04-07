@@ -1,0 +1,55 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.github.talkachouilya.RenameCommitButton</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>RenameCommitButton</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="talkachou.ilya@gmail.com" url="https://github.com/talkachou-ilya">Ilya Talkachou</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+
+    <description><![CDATA[
+This plugin enhances the Git functionality in IntelliJ IDEA by allowing users to easily rename their last commit through an accessible action. It provides a streamlined alternative to amending commits via the command line or navigating menus.
+
+Key features:
+<ul>
+    <li>Accessible directly in the Git branch popup menu.</li>
+    <li>Seamlessly integrates with IntelliJ IDEA's Git workflow.</li>
+    <li>Quick access to rename the most recent commit message.</li>
+</ul>
+
+<img scr="https://i.postimg.cc/PqQbYBRX/Screenshot-From-2025-04-07-05-11-43.png"/>
+<br/>
+
+Simplify your commit management workflow with <b>RenameCommitButton</b>.
+]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>Git4Idea</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="GitCommitRename"
+                           displayType="BALLOON"
+                           isLogByDefault="true"/>
+    </extensions>
+
+    <actions>
+        <action
+                class="com.github.talkachouilya.renamecommitbutton.RenameCommitAction"
+                id="Git.Experimental.Branch.Popup.Actions.RenameCommitAction"
+                text="Rename Current Commit...">
+            <add-to-group group-id="Git.Experimental.Branch.Popup.Actions"/>
+        </action>
+    </actions>
+
+</idea-plugin>
